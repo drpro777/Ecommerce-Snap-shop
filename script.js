@@ -208,7 +208,7 @@ const generateProducts = () => {
             price: 14.6,
             category: "Perfumes",
             description: "Premium fragrance with notes of pineapple, birch, and musk. Long-lasting scent that develops over time.",
-            images: ["https://ameena.pk/cdn/shop/files/CREEDAVENTUS-100MLEaudeParfum_1800x1800_8a82e2e2-a71d-4cf3-a54b-282fa448c5a0.webp?v=1718198687"],
+            images: ["creed.webp"],
 
             stock: 50,
             sizes: ["50ml", "100ml", "200ml"],
@@ -489,8 +489,7 @@ const generateProducts = () => {
         price: product.price,
         category: product.category,
         description: product.description,
-        images: [`./images/product${index + 1}.jpg`],
-
+                images: product.images,
         rating: (Math.random() * 2 + 3).toFixed(1), // Random rating between 3-5
         reviews: Math.floor(Math.random() * 1000 + 10), // Random reviews between 10-1010
         stock: product.stock,
