@@ -207,7 +207,7 @@ const generateProducts = () => {
             price: 14.6,
             category: "Perfumes",
             description: "Premium fragrance with notes of pineapple, birch, and musk. Long-lasting scent that develops over time.",
-            images: ["/imge/creed.webp"],
+            images: ["https://ameena.pk/cdn/shop/files/CREEDAVENTUS-100MLEaudeParfum_1800x1800_8a82e2e2-a71d-4cf3-a54b-282fa448c5a0.webp?v=1718198687"],
 
             stock: 50,
             sizes: ["50ml", "100ml", "200ml"],
@@ -227,7 +227,7 @@ const generateProducts = () => {
             price: 9.12,
             category: "Perfumes",
             description: "Premium fragrance with notes of pineapple, birch, and musk. Long-lasting scent that develops over time.",
-            images: ["/imge/dolce.jpg"],
+            images: ["https://www.fragrancesamplesuk.com/media/catalog/product/cache/0ac0516e26f0560d9a76e8e2dd4b6632/t/h/theoneforher.jpg"],
             stock: 9,
             
             details: {
