@@ -488,7 +488,7 @@ const generateProducts = () => {
         price: product.price,
         category: product.category,
         description: product.description,
-        images: product.images,
+            images: [`../images/product${index + 1}.jpg`],  // ✅ Replaced here
         rating: (Math.random() * 2 + 3).toFixed(1), // Random rating between 3-5
         reviews: Math.floor(Math.random() * 1000 + 10), // Random reviews between 10-1010
         stock: product.stock,
