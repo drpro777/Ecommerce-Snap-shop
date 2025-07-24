@@ -246,7 +246,7 @@ const generateProducts = () => {
             price: 10.99,
             category: "Perfumes",
             description: "Premium fragrance with notes of pineapple, birch, and musk. Long-lasting scent that develops over time.",
-            images: ["/imge/aqua.jpg"],
+            images: ["https://moodiedavittreport.com/wp-content/uploads/2023/07/Guerlain-Aqua-Allegoria-e1680194626246.jpg"],
             stock: 12,
             
             details: {
@@ -265,7 +265,7 @@ const generateProducts = () => {
             price: 8.99,
             category: "Fashion",
             description: "100% organic cotton t-shirt with comfortable fit and durable construction.",
-            images: ["/imge/deen-1.jpg"],
+            images: ["https://ssgarmentss.com/wp-content/uploads/2023/09/deen-1.jpg"],
             stock: 42,
             sizes: ["XS", "S", "M", "L", "XL", "XXL"],
             colors: ["White", "Black", "Navy", "Gray"],
@@ -282,7 +282,7 @@ const generateProducts = () => {
             price: 8.44,
             category: "Fashion",
             description: "Genuine leather wallet with multiple card slots and RFID protection.",
-            images: ["/imge/barellerry.webp"],
+            images: ["https://sialkotleather.pk/cdn/shop/files/WhatsApp_Image_2025-01-24_at_11.44.03_PM_800x.jpg?v=1744876477"],
             stock: 25,
             colors: ["Brown", "Black", "Tan"],
             details: {
@@ -298,7 +298,7 @@ const generateProducts = () => {
             price: 6.45,
             category: "Sports",
             description: "Its a great wooden bat with best looks and performance.",
-            images: ["/imge/bat.webp"],
+            images: ["https://nwscdn.com/media/catalog/product/cache/h900xw900/e/n/english-willow-pro-bat-main_1_3.jpg"],
             stock: 16,
             colors: ["Purple", "Blue", "Green, Blue , Red"],
             details: {
@@ -314,7 +314,7 @@ const generateProducts = () => {
             price: 12.99,
             category: "Garden",
             description: "Handcrafted ceramic plant pot with drainage hole and saucer included.",
-            images: ["/imge/plant.webp"],
+            images: ["https://plantlane.com/cdn/shop/files/DSC09769.jpg?v=1712320908"],
             stock: 40,
             sizes: ["Small (6\")", "Medium (8\")", "Large (10\")"],
             colors: ["Terracotta", "White", "Gray"],
@@ -331,7 +331,7 @@ const generateProducts = () => {
             price: 7.24,
             category: "Fashion",
             description: "100% cotton pent Shirt with comfortable fit and durable construction.",
-            images: ["/imge/pent.jpg"],
+            images: ["https://i.pinimg.com/564x/af/45/b6/af45b698a8e6fcd4e87c09816cb65434.jpg"],
             stock: 42,
             sizes: ["XS", "S", "M", "L", "XL", "XXL"],
             colors: ["White", "Black", "Navy", "Gray"],
@@ -348,7 +348,7 @@ const generateProducts = () => {
             price: 18.54,
             category: "Home",
             description: "High-speed blender with 1000W motor and BPA-free jug for smoothies and food prep.",
-            images: ["/imge/blander.jpg"],
+            images: ["https://s.alicdn.com/@sc04/kf/H3e8be275a8af426b9a5d6f48993ef80cd/2023-New-Design-Food-Juice-Blender-Easy-to-Operate-and-Highly-Efficient-7-in-1-Kitchen-Blender.jpg"],
             stock: 20,
             colors: ["Black", "Red", "Silver"],
             details: {
@@ -363,15 +363,15 @@ const generateProducts = () => {
             }
         },
         {
-            name: "Facial Serum",
+            name: "VINTNER'S DAUGHTER Serum",
             price: 5.47,
             category: "Beauty",
             description: "Anti-aging facial serum with hyaluronic acid and vitamin C for radiant skin.",
-            images: ["/imge/serum.jpg"],
+            images: ["https://vintnersdaughter.com/cdn/shop/files/2023_VD_ABS_30ml_EcommProduct_Badges_1400x1220_c5c04579-0abc-4d00-b29d-ba1c2cd1c795.jpg?v=1709657286"],
             stock: 55,
             sizes: ["30ml", "50ml"],
             details: {
-                brand: "SkinScience",
+                brand: "Vintner's Daughter",
                 keyIngredients: "Hyaluronic Acid, Vitamin C, Peptides",
                 skinType: "All skin types",
                 crueltyFree: "Yes",
@@ -388,10 +388,10 @@ const generateProducts = () => {
             price: 80.24,
             category: "Electronics",
             description: "55-inch 4K UHD Smart TV with HDR and built-in streaming apps.",
-            images: ["/imge/lcd.webp"],
+            images: ["https://m.media-amazon.com/images/I/71cZiYhNZLL._AC_SL1500_.jpg"],
             stock: 14,
             details: {
-                brand: "Samsung",
+                brand: "TCL",
                 screenSize: "55 inches",
                 resolution: "3840 x 2160 (4K UHD)",
                 smartFeatures: "Built-in WiFi, streaming apps",
@@ -399,11 +399,11 @@ const generateProducts = () => {
             }
         },
         {
-            name: "Wireless Earbuds",
+            name: "Wireless AirPods",
             price: 14.78,
             category: "Electronics",
             description: "True wireless earbuds with 24-hour battery life and touch controls.",
-            images: ["/imge/pods.webp"],
+            images: ["https://www.shutterstock.com/image-photo/berlin-germany-october-2-2022-600nw-2210019033.jpg"],
             stock: 40,
             colors: ["Black", "White"],
             details: {
@@ -417,11 +417,11 @@ const generateProducts = () => {
         
         // Fashion
         {
-            name: "Wolve Jacket",
+            name: "Wool Jacket",
             price: 25.47,
             category: "Fashion",
             description: "Classic denim jacket with modern fit and distressed details.",
-            images: ["/imge/jac.webp"],
+            images: ["https://thestreetstylestore.pk/wp-content/uploads/2023/06/eec89f90-0a45-4153-b3e8-a0281a0d0b84-600x600.jpg"],
             stock: 28,
             sizes: ["S", "M", "L", "XL"],
             colors: ["Light Blue", "Dark Blue", "Black"],
@@ -436,16 +436,16 @@ const generateProducts = () => {
         
         // Home
         {
-            name: "Chenel Paris",
+            name: "Dior Sauvage Parfum",
             price: 14.6,
             category: "Perfumes",
             description: "Premium fragrance with notes of pineapple, birch, and musk. Long-lasting scent that develops over time.",
-            images: ["/imge/chenel.jpg"],
+            images: ["https://i0.wp.com/perfumedecants.in/wp-content/uploads/2022/04/Dior-Sauvage-Parfum.jpg?fit=1080%2C1080&ssl=1"],
 
             stock: 50,
             sizes: ["30ml", "50ml", "100ml"],
             details: {
-                brand: "Chenel",
+                brand: "Dior",
                 scentType: "Woody Aromatic",
                 topNotes: "Pineapple, Bergamot, Blackcurrant",
                 middleNotes: "Birch, Jasmine, Patchouli",
@@ -458,16 +458,16 @@ const generateProducts = () => {
         
         // Sports
         {
-             name: "cK",
+             name: "JAGUAR Classic Black",
             price: 14.6,
             category: "Perfumes",
             description: "Premium fragrance with notes of pineapple, birch, and musk. Long-lasting scent that develops over time.",
-            images: ["/imge/ck.jpg"],
+            images: ["https://technuggets.biz/wp-content/uploads/2018/11/Tech-Nuggets-Jaguar-Classic-Black-Perfume-for-Men-600x600.jpg"],
 
             stock: 10,
             sizes: ["30ml", "50ml", "100ml"],
             details: {
-                brand: "Calvin Klein",
+                brand: "JAGUAR",
                 scentType: "Woody Aromatic",
                 topNotes: "Pineapple, Bergamot, Blackcurrant",
                 middleNotes: "Birch, Jasmine, Patchouli",
