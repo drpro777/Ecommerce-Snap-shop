@@ -1,4 +1,5 @@
 
+
 let currentStep = 1;
 let userName = '';
 let userPhoto = '';
@@ -488,7 +489,8 @@ const generateProducts = () => {
         price: product.price,
         category: product.category,
         description: product.description,
-            images: [`../images/product${index + 1}.jpg`],  // ✅ Replaced here
+        images: [`./images/product${index + 1}.jpg`],
+
         rating: (Math.random() * 2 + 3).toFixed(1), // Random rating between 3-5
         reviews: Math.floor(Math.random() * 1000 + 10), // Random reviews between 10-1010
         stock: product.stock,
