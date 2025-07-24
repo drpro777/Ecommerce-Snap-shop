@@ -1714,6 +1714,30 @@ function toggleSettings() {
     const settingsPanel = document.getElementById('settings-panel');
     if (settingsPanel) {
         settingsPanel.classList.toggle('active');
+        
+        // Add or remove the event listener based on panel state
+        if (settingsPanel.classList.contains('active')) {
+            // Add click listener after a small delay to avoid immediate closing
+            setTimeout(() => {
+                document.addEventListener('click', closeSettingsOnOutsideClick);
+            }, 10);
+        } else {
+            document.removeEventListener('click', closeSettingsOnOutsideClick);
+        }
+    }
+}
+
+function closeSettingsOnOutsideClick(event) {
+    const settingsPanel = document.getElementById('settings-panel');
+    const settingsButton = document.querySelector('.settings-button');
+    
+    // Check if click is outside the settings panel and not on the settings button
+    if (settingsPanel && 
+        !settingsPanel.contains(event.target) && 
+        (!settingsButton || !settingsButton.contains(event.target))) {
+        
+        settingsPanel.classList.remove('active');
+        document.removeEventListener('click', closeSettingsOnOutsideClick);
     }
 }
 
@@ -1725,6 +1749,19 @@ function toggleNotifications() {
     }
 }
 
+// Initialize settings panel behavior
+document.addEventListener('DOMContentLoaded', function() {
+    // Close settings panel when pressing Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const settingsPanel = document.getElementById('settings-panel');
+            if (settingsPanel && settingsPanel.classList.contains('active')) {
+                settingsPanel.classList.remove('active');
+                document.removeEventListener('click', closeSettingsOnOutsideClick);
+            }
+        }
+    });
+});
 // Language functions
 function changeLanguage() {
     const select = document.getElementById('language-select');
