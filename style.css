@@ -250,6 +250,7 @@ body.rtl .contact-container {
     );
     position: relative;
     z-index: 1;
+    left: 55%;
 }
 
 .login-card::before {
@@ -5856,7 +5857,14 @@ body.rtl .contact-container {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
-
+@media (max-width: 1800px) {
+   .login-card{
+         left: 50%;
+         transform: translateX(-50%);
+         width: 100%;
+         max-width: 500px;
+   }
+}
 /* Responsive Design */
 @media (max-width: 1024px) {
     .hero {
@@ -5907,6 +5915,9 @@ body.rtl .contact-container {
 @media (max-width: 768px) {
     .nav-menu {
         display: none;
+    }
+    .login-card{
+       left: 45%;
     }
     
     .mobile-menu-toggle {
@@ -6020,6 +6031,12 @@ body.rtl .contact-container {
     .header-container {
         padding: 15px;
     }
+    .login-card{
+        left: 47%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 400px;
+    }
     
     .logo {
         font-size: 1.25rem;
@@ -6098,6 +6115,13 @@ body.rtl .contact-container {
     .header-container {
         padding: 15px;
     }
+       .login-card{
+        left: 47%;
+        transform: translateX(-50%);
+        width: 200%;
+        max-width: 300px;
+    }
+    
     
     .logo {
         font-size: 1.25rem;
