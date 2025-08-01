@@ -5218,7 +5218,7 @@ body.rtl .contact-container {
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(12px) brightness(0.9);
     -webkit-backdrop-filter: blur(12px) brightness(0.9);
-    z-index: 300;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5461,6 +5461,9 @@ body.rtl .contact-container {
     animation: spin 0.8s linear infinite;
     z-index: 2;
 }
+.bottom-navbar.active{
+    display: none;
+}
 /* Enhanced Bottom Navigation */
 .bottom-navbar {
     position: fixed;
@@ -5474,7 +5477,7 @@ body.rtl .contact-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 12px 0;
+    padding: 2px 0;
     z-index: 1000;
     transform: translateY(120%);
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
@@ -5681,8 +5684,9 @@ body.rtl .contact-container {
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
+
     .bottom-navbar {
-        padding: 10px 0;
+        padding: 7px 0;
         transform: matrix(1, 0, 0, 1, 0, 0);
     }
     .bottom-nav-link {
@@ -5911,6 +5915,10 @@ body.rtl .contact-container {
 }
 
 @media (max-width: 768px) {
+        .bottom-navbar.active {
+        display: flex;
+        transform: translateY(0);
+    }
     .nav-menu {
         display: none;
     }
