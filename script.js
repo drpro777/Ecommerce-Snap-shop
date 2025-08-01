@@ -2269,3 +2269,7 @@ window.addEventListener('unhandledrejection', (e) => {
     e.preventDefault();
     showNotification('A network error occurred. Please check your connection.', 'warning');
 });
+
+
+
+// bag model

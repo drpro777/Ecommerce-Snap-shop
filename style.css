@@ -5508,9 +5508,6 @@ body.rtl .contact-container {
     100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
 }
 
-.bottom-navbar.active {
-    transform: translateY(0);
-}
 
 .bottom-nav-link {
     display: flex;
@@ -5686,6 +5683,7 @@ body.rtl .contact-container {
 @media (max-width: 480px) {
     .bottom-navbar {
         padding: 10px 0;
+        transform: matrix(1, 0, 0, 1, 0, 0);
     }
     .bottom-nav-link {
         padding: 8px 12px;
@@ -6993,3 +6991,4 @@ body.rtl .contact-container {
         height: 25px;
     }
 }
+
