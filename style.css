@@ -5685,10 +5685,7 @@ body.rtl .contact-container {
 /* Responsive adjustments */
 @media (max-width: 480px) {
 
-    .bottom-navbar {
-        padding: 7px 0;
-        transform: matrix(1, 0, 0, 1, 0, 0);
-    }
+    
     .bottom-nav-link {
         padding: 8px 12px;
     }
@@ -6033,7 +6030,14 @@ body.rtl .contact-container {
         --space-2xl: 1.5rem;
         --space-3xl: 2rem;
     }
-    
+    .order-modal{
+            z-index: 1000;
+
+    }
+    .bottom-navbar {
+        padding: 7px 0;
+        transform: matrix(1, 0, 0, 1, 0, 0);
+    }
     .header-container {
         padding: 15px;
     }
