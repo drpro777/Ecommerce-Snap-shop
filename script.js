@@ -1284,7 +1284,12 @@ async function submitOrder(event) {
     const originalText = submitBtn.innerHTML;
     const orderModal = document.getElementById('order-modal');
     
-    // Store form data in case we need to restore it
+    // Get selected options
+    const selectedColor = document.querySelector('.color-option.active')?.getAttribute('data-color') || 'Not selected';
+    const selectedVolume = document.querySelector('.size-option.active')?.textContent || 'Not selected';
+    const selectedSize = document.querySelectorAll('.size-option.active')[1]?.textContent || 'Not selected';
+    
+    // Store form data
     const formData = new FormData(form);
     const formValues = {};
     formData.forEach((value, key) => {
@@ -1317,7 +1322,7 @@ async function submitOrder(event) {
         submitBtn.disabled = true;
         orderModal.classList.add('loading');
 
-        // Prepare order data
+        // Prepare order data with selected options
         const orderData = {
             customer_name: formValues.customer_name.trim(),
             customer_email: formValues.customer_email.trim(),
@@ -1326,12 +1331,15 @@ async function submitOrder(event) {
             customer_address: formValues.customer_address.trim(),
             payment_method: formValues.payment_method || 'Not specified',
             items: orderItems.map(item => 
-                `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
+                `${item.name} (Color: ${selectedColor}, Volume: ${selectedVolume}, Size: ${selectedSize}) x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
             ).join('\n'),
             total: document.getElementById('order-total')?.textContent || '0.00',
             order_date: new Date().toLocaleString(),
             user_name: window.userName || 'Guest',
-            order_id: 'ORD-' + Date.now().toString().slice(-8)
+            order_id: 'ORD-' + Date.now().toString().slice(-8),
+            color_selected: selectedColor,
+            volume_selected: selectedVolume,
+            size_selected: selectedSize
         };
 
         // Send email
@@ -1348,8 +1356,8 @@ async function submitOrder(event) {
         // Success handling
         showNotification('Order placed successfully! You will receive a confirmation email.', 'success');
         
-        // Update stock and orders
-        if (window.products) {
+        // Update stock and orders - only if window.products exists and is an array
+        if (window.products && Array.isArray(window.products)) {
             orderItems.forEach(item => {
                 const product = window.products.find(p => p.id === item.id);
                 if (product) {
@@ -1374,7 +1382,7 @@ async function submitOrder(event) {
         renderProducts();
         
         // Close modal on success
-        closeOrderModal(true); // Pass true to indicate success
+        closeOrderModal(true);
 
     } catch (error) {
         console.error('Order Submission Error:', error);
@@ -1385,7 +1393,7 @@ async function submitOrder(event) {
             if (input) input.value = formValues[key];
         });
         
-      
+        showNotification(error.message || 'Failed to place order. Please try again.', 'error');
         
         if (orderModal) {
             orderModal.classList.add('error');
@@ -1925,7 +1933,139 @@ function viewUserDetails(userId) {
     alert(details);
 }
 
+
 function manageProducts() {
+    document.getElementById('admin-dashboard').innerHTML = `
+        <div class="admin-section-header">
+            <h2>Product Management</h2>
+            <button class="admin-back-btn" onclick="showAdminDashboard()">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </button>
+        </div>
+        
+        <div class="product-management-container">
+            <div class="product-actions">
+                <button class="admin-btn primary" onclick="showAddProductForm()">
+                    <i class="fas fa-plus"></i> Add New Product
+                </button>
+            </div>
+            
+            <div id="products-list-container" class="products-list-container">
+                <!-- Product list will be loaded here -->
+            </div>
+        </div>
+    `;
+    
+    loadProductsList();
+}
+
+function loadProductsList() {
+    const container = document.getElementById('products-list-container');
+    if (!container) return;
+    
+    if (products.length === 0) {
+        container.innerHTML = '<p class="no-products">No products available. Add your first product!</p>';
+        return;
+    }
+    
+    container.innerHTML = `
+        <div class="products-list-header">
+            <span class="header-item">Image</span>
+            <span class="header-item">Name</span>
+            <span class="header-item">Price</span>
+            <span class="header-item">Stock</span>
+            <span class="header-item">Actions</span>
+        </div>
+        <div id="products-list" class="products-list"></div>
+    `;
+    
+    const productsList = document.getElementById('products-list');
+    products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.className = 'product-item';
+        productItem.innerHTML = `
+            <div class="product-cell product-image">
+                <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/100'">
+            </div>
+            <div class="product-cell product-name">${product.name}</div>
+            <div class="product-cell product-price">$${product.price.toFixed(2)}</div>
+            <div class="product-cell product-stock ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}">
+                ${product.stock} ${product.stock > 0 ? 'in stock' : 'out of stock'}
+            </div>
+            <div class="product-cell product-actions">
+                <button class="action-btn edit" onclick="editProduct(${product.id})">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete" onclick="confirmDeleteProduct(${product.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `;
+        productsList.appendChild(productItem);
+    });
+}
+
+function showAddProductForm() {
+    document.getElementById('products-list-container').innerHTML = `
+        <div class="product-form-container">
+            <h3>Add New Product</h3>
+            
+            <div class="form-group">
+                <label for="product-name">Product Name</label>
+                <input type="text" id="product-name" placeholder="Enter product name">
+            </div>
+            
+            <div class="form-group">
+                <label for="product-price">Price ($)</label>
+                <input type="number" id="product-price" min="0" step="0.01" placeholder="0.00">
+            </div>
+            
+            <div class="form-group">
+                <label for="product-stock">Stock Quantity</label>
+                <input type="number" id="product-stock" min="0" placeholder="0">
+            </div>
+            
+            <div class="form-group">
+                <label for="product-category">Category</label>
+                <select id="product-category">
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="home">Home & Garden</option>
+                    <option value="books">Books</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-description">Description</label>
+                <textarea id="product-description" rows="4" placeholder="Enter product description"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-image">Product Image URL</label>
+                <input type="text" id="product-image" placeholder="https://example.com/image.jpg">
+                <small>Or upload an image below</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-image-upload">Upload Image</label>
+                <input type="file" id="product-image-upload" accept="image/*">
+                <div id="image-preview" class="image-preview" style="display: none;">
+                    <img id="preview-image" src="#" alt="Preview">
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button class="admin-btn secondary" onclick="loadProductsList()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="admin-btn primary" onclick="addNewProduct()">
+                    <i class="fas fa-save"></i> Save Product
+                </button>
+            </div>
+        </div>
+    `;
+    
     showNotification('Product management feature coming soon!', 'info');
 }
 
@@ -2269,7 +2409,3 @@ window.addEventListener('unhandledrejection', (e) => {
     e.preventDefault();
     showNotification('A network error occurred. Please check your connection.', 'warning');
 });
-
-
-
-// bag model
