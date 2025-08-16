@@ -1248,6 +1248,7 @@ function closeOrderModal() {
 }
 
 
+
 // Initialize EmailJS with your User ID
 // In your DOMContentLoaded event:
 const orderForm = document.getElementById('order-form');
@@ -2408,4 +2409,32 @@ window.addEventListener('unhandledrejection', (e) => {
     console.error('Unhandled promise rejection:', e.reason);
     e.preventDefault();
     showNotification('A network error occurred. Please check your connection.', 'warning');
+});
+
+
+
+// Set minimum delivery date to tomorrow
+document.addEventListener('DOMContentLoaded', function() {
+    const deliveryDate = document.getElementById('delivery_date');
+    if (deliveryDate) {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        // Format as YYYY-MM-DD
+        const minDate = tomorrow.toISOString().split('T')[0];
+        deliveryDate.min = minDate;
+    }
+    
+    // Update order total with delivery charges
+    function updateOrderTotal() {
+        const subtotal = calculateSubtotal(); // Your existing subtotal calculation
+        const deliveryFee = 120;
+        const total = subtotal + deliveryFee;
+        document.getElementById('order-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('order-total').textContent = `$${total.toFixed(2)}`;
+    }
+    
+    // Call this whenever cart items change
+    updateOrderTotal();
 });
